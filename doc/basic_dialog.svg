@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="111.57418mm"
+   height="179.17244mm"
+   viewBox="0 0 111.57418 179.17244"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="basic_dialog.svg"
+   inkscape:export-filename="/home/dario/PycharmProjects/chat/doc/basic_dialog.svg.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1108"
+       x="-0.045408562"
+       width="1.0908171"
+       y="-0.1061091"
+       height="1.2122182">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.49442175"
+         id="feGaussianBlur1110" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="381.93215"
+     inkscape:cy="375.51106"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-29.548157,-8.6075268)">
+    <rect
+       style="fill:#ececec;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect938"
+       width="111.22334"
+       height="172.47816"
+       x="29.798992"
+       y="15.201795" />
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect815"
+       width="99.747917"
+       height="128.58749"
+       x="35.454166"
+       y="32.681217" />
+    <rect
+       y="19.752174"
+       x="35.454166"
+       height="9.2249193"
+       width="99.747925"
+       id="rect823"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       y="164.97284"
+       x="35.454166"
+       height="18.15674"
+       width="99.912994"
+       id="rect819"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       style="fill:#f2f2f2;stroke:#000000;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect821"
+       width="19.74424"
+       height="18.156738"
+       x="115.62292"
+       y="164.97284" />
+    <g
+       style="fill:#f4eed7;stroke-width:0.27312446;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="g835"
+       transform="matrix(0.7322669,0,0,0.7322669,34.322454,44.953162)">
+      <path
+         sodipodi:nodetypes="cccccsc"
+         inkscape:connector-curvature="0"
+         id="path829"
+         d="m 117.70651,175.19244 c 3.57525,-2.55185 7.79699,-5.18802 13.39453,-8.00364 -1.54707,3.91445 -3.53296,7.78013 -4.36562,11.77396 -0.84177,-1.06952 -1.90098,-1.868 -3.33367,-2.83663 -0.61734,-0.2051 -1.10829,0.66411 -1.99976,1.98694 0.42,-1.88439 1.34397,-2.36221 0.45153,-2.51591 -1.06805,-0.18395 -3.169,-0.54389 -4.14701,-0.40472 z"
+         style="fill:#f4eed7;stroke:#000000;stroke-width:0.27312446;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path831"
+         d="m 122.26957,175.82686 c 0.84789,-1.07831 3.55217,-3.64189 4.77401,-4.49025 l -4.2198,4.87542"
+         style="fill:#f4eed7;stroke:#000000;stroke-width:0.27312446;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       x="120.38541"
+       y="180.18645"
+       id="text839"><tspan
+         sodipodi:role="line"
+         id="tspan837"
+         x="120.38541"
+         y="180.18645"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:'Courier New';-inkscape-font-specification:'Courier New';stroke-width:0.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0">SEND</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="38.761456"
+       y="39.031239"
+       id="text852"><tspan
+         sodipodi:role="line"
+         id="tspan850"
+         x="38.761456"
+         y="43.3736"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332" /><tspan
+         sodipodi:role="line"
+         x="38.761456"
+         y="49.723598"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332"
+         id="tspan854"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:1.5;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#0000ff"
+   id="tspan868">Fabienne</tspan>: Who's motorcycle is this?</tspan><tspan
+         sodipodi:role="line"
+         x="38.761456"
+         y="56.073597"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332"
+         id="tspan856"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:1.5;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#008000"
+   id="tspan872">Butch Coolidge</tspan>: *sigh* It's a Chopper baby.</tspan><tspan
+         sodipodi:role="line"
+         x="38.761456"
+         y="62.423599"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332"
+         id="tspan858"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:1.5;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#0000ff"
+   id="tspan876">Fabienne</tspan>: Who's Chopper is this?</tspan><tspan
+         sodipodi:role="line"
+         x="38.761456"
+         y="68.773598"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332"
+         id="tspan860"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:1.5;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#008000"
+   id="tspan880">Butch Coolidge</tspan>: It's Zed's.</tspan><tspan
+         sodipodi:role="line"
+         x="38.761456"
+         y="75.123596"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332"
+         id="tspan864"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:1.5;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#0000ff"
+   id="tspan884">Fabienne</tspan>: Who's Zed? </tspan><tspan
+         sodipodi:role="line"
+         x="38.761456"
+         y="81.473595"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.5;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332"
+         id="tspan866" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="39.422916"
+       y="171.58751"
+       id="text890"><tspan
+         sodipodi:role="line"
+         id="tspan888"
+         x="39.422916"
+         y="171.58751"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">Zed's dead baby...Zed's dead.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="98.028122"
+       y="25.272917"
+       id="text926"><tspan
+         sodipodi:role="line"
+         id="tspan924"
+         x="98.028122"
+         y="25.272917"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, ';stroke-width:0.26458332">Butch Coolidge</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="40.745831"
+       y="25.140625"
+       id="text930"><tspan
+         sodipodi:role="line"
+         id="tspan928"
+         x="40.745831"
+         y="25.140625"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">User</tspan></text>
+    <rect
+       y="26.825191"
+       x="40.842903"
+       height="11.182944"
+       width="26.131905"
+       id="rect1022"
+       style="opacity:0.85900005;fill:#4d4d4d;stroke:none;stroke-width:0.12955445;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;filter:url(#filter1108)"
+       transform="matrix(1.0552095,0,0,1.0552095,-3.6976456,-0.95183873)" />
+    <rect
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.12955445;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect932"
+       width="26.131905"
+       height="11.182944"
+       x="40.842903"
+       y="26.825191" />
+    <text
+       id="text936"
+       y="33.871876"
+       x="41.936455"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88055563px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332"
+         y="33.871876"
+         x="41.936455"
+         id="tspan934"
+         sodipodi:role="line">Logout</tspan></text>
+    <rect
+       y="8.8583622"
+       x="29.798992"
+       height="6.3434334"
+       width="111.22334"
+       id="rect1112"
+       style="fill:#241c1c;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       style="fill:#ececec;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1114"
+       width="6.3446703"
+       height="6.3451037"
+       x="29.798157"
+       y="8.8575268" />
+    <rect
+       y="8.8566914"
+       x="134.67767"
+       height="6.3451037"
+       width="6.3446703"
+       id="rect1116"
+       style="fill:#ececec;fill-opacity:1;stroke:#000000;stroke-width:0.19832963;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0" />
+    <rect
+       style="opacity:0.85900005;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1120"
+       width="4.2562656"
+       height="0.70158273"
+       x="30.84236"
+       y="11.679287" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.91550249;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 135.44571,9.6247871 4.80859,4.8089139"
+       id="path1122"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.91550249;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 140.2543,9.6260534 -4.80859,4.8076476"
+       id="path1124"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
