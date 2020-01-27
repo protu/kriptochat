@@ -4,10 +4,12 @@ from PyQt5.QtGui import QPalette, QColor
 import sys
 import socket
 
+
 def getIPAddress():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(('2.2.2.2', 1))
     return s.getsockname()[0]
+
 
 class MainWindow(QMainWindow):
 
