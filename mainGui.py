@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QVBoxLayout
-from PyQt5.QtWidgets import QAction, QToolBar, QStatusBar
+from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QVBoxLayout, QHBoxLayout
+from PyQt5.QtWidgets import QAction, QToolBar, QStatusBar, QTextBrowser, QTextEdit, QPushButton
 from PyQt5.QtGui import QPalette, QColor
 import sys
 import socket
@@ -15,12 +15,20 @@ class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
-        self.setWindowTitle("Test Qt app")
-        layout = QVBoxLayout()
-        layout.addWidget(Color('red'))
-        layout.addWidget(Color('blue'))
-        layout.addWidget(Color('green'))
+        self.title = "Probably secure chate"
+        self.width = 480
+        self.height = 600
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle(self.title)
+        self.resize(self.width, self.height)
         widget = QWidget()
+        layout = QVBoxLayout()
+        layout.addWidget(QTextBrowser(self))
+        inputForm = InputForm()
+        layout.addLayout(inputForm)
+
         widget.setLayout(layout)
         self.setCentralWidget(widget)
         toolbar = QToolBar("Main toolbar")
@@ -38,21 +46,19 @@ class MainWindow(QMainWindow):
         print("click", s)
 
 
-class Color(QWidget):
+class InputForm(QHBoxLayout):
+    def __init__(self, *args, **kwargs):
+        super(InputForm, self).__init__()
 
-    def __init__(self, color, *args, **kwargs):
-        super(Color, self).__init__(*args, **kwargs)
-        self.setAutoFillBackground(True)
-
-        palette = self.palette()
-        palette.setColor(QPalette.Window, QColor(color))
-        self.setPalette(palette)
+        textedit = QTextEdit()
+        sendButton = QPushButton()
+        self.addWidget(textedit)
+        self.addWidget(sendButton)
 
 
 app = QApplication(sys.argv)
 window = MainWindow()
 window.statusBar.showMessage("Your IP is: " + str(getIPAddress()))
-window.resize(480, 600)
 window.show()
 
 app.exec_()
