@@ -89,8 +89,8 @@ class Chat:
         MainWindow = QtWidgets.QMainWindow()
         ui = Ui_MainWindow()
         ui.setupUi(MainWindow)
-        ui.pushButtonConnect.clicked(self.connect(ui))
-        ui.pushButtonSend.clicked(self.sendMessage(ui.plainTextEditMessage))
+        #ui.pushButtonConnect.clicked(self.connect(ui))
+        #ui.pushButtonSend.clicked(self.sendMessage(ui.plainTextEditMessage))
         MainWindow.statusBar().showMessage("Your IP is: " + str(getIPAddress()))
         MainWindow.show()
         sys.exit(app.exec_())
@@ -102,8 +102,8 @@ class Chat:
         self.client = Client(address)
 
     def sendMessage(self, message):
-        if client:
-            client.sendMsg(message)
+        if self.client:
+            self.client.sendMsg(message)
 
 
 if __name__ == "__main__":
