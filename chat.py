@@ -1,25 +1,29 @@
 import socket
 import threading
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('0.0.0.0', 6001))
-sock.listen(1)
-connections = []
+
+class Server:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    connections = []
+    def __init__(self):
+        self.sock.bind(('0.0.0.0', 6001))
+        self.sock.listen(1)
 
 
-def handler(c, a):
-    while True:
-        data = c.recv(1024)
-        for connection in connections:
-            connection.send(data)
-        if not data:
-            break
+    def handler(self, c, a):
+        while True:
+            data = c.recv(1024)
+            for connection in self.connections:
+                connection.send(data)
+            if not data:
+                break
 
 
-while True:
-    c, a = sock.accept()
-    cThread = threading.Thread(target=handler, args=(c, a))
-    cThread.daemon = True
-    cThread.start()
-    connections.append(c)
-    print(connections)
+    def run(self):
+        while True:
+            c, a = self.sock.accept()
+            cThread = threading.Thread(target=handler, args=(c, a))
+            cThread.daemon = True
+            cThread.start()
+            self.connections.append(c)
+            print(self.connections)
