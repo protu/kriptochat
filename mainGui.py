@@ -1,8 +1,10 @@
-from PyQt5.QtWidgets import QWidget, QMainWindow, QApplication, QVBoxLayout, QHBoxLayout
-from PyQt5.QtWidgets import QAction, QToolBar, QStatusBar, QTextBrowser, QTextEdit, QPushButton
-from PyQt5.QtGui import QPalette, QColor
-import sys
 import socket
+import sys
+from PyQt5.QtGui import QColor, QPalette
+from PyQt5.QtWidgets import (QApplication, QMainWindow,
+                             QPushButton, QStatusBar, QTextBrowser, QTextEdit,
+                             QToolBar, QVBoxLayout, QWidget)
+from chatwindow import *
 
 
 def getIPAddress():
@@ -10,55 +12,35 @@ def getIPAddress():
     s.connect(('2.2.2.2', 1))
     return s.getsockname()[0]
 
+class ServerThread(Thread):
+    def __init__(self, window):
+        Thread.__init__(self)
+        self.window = window
 
-class MainWindow(QMainWindow):
-
-    def __init__(self, *args, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
-        self.title = "Probably secure chate"
-        self.width = 480
-        self.height = 600
-        self.initUI()
-
-    def initUI(self):
-        self.setWindowTitle(self.title)
-        self.resize(self.width, self.height)
-        widget = QWidget()
-        layout = QVBoxLayout()
-        layout.addWidget(QTextBrowser(self))
-        inputForm = InputForm()
-        layout.addLayout(inputForm)
-
-        widget.setLayout(layout)
-        self.setCentralWidget(widget)
-        toolbar = QToolBar("Main toolbar")
-        self.addToolBar(toolbar)
-
-        button_action = QAction("User", self)
-        button_action.triggered.connect(self.onToolBarButton1Click)
-        button_action.setCheckable(True)
-        toolbar.addAction(button_action)
-
-        self.statusBar = QStatusBar()
-        self.setStatusBar(self.statusBar)
-
-    def onToolBarButton1Click(self, s):
-        print("click", s)
+    def run(self):
+        TCP_IP = '0.0.0.0'
+        TCP_PORT = 6896
+        BUFFER_SIZE = 1024
+        tcpServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        tcpServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        tcpServer.bind((TCP_IP, TCP_PORT))
+        tcpServer.listen(1)
+        while True:
+            global conn
+            (conn, (ip, port)) = tcpServer.accept()
+            newthread = ClientThread(ip, port, window)
+            newthread.start()
+            threads.append(newthread)
+        for t in threads:
+            t.join()
 
 
-class InputForm(QHBoxLayout):
-    def __init__(self, *args, **kwargs):
-        super(InputForm, self).__init__()
-
-        textedit = QTextEdit()
-        sendButton = QPushButton()
-        self.addWidget(textedit)
-        self.addWidget(sendButton)
-
-
-app = QApplication(sys.argv)
-window = MainWindow()
-window.statusBar.showMessage("Your IP is: " + str(getIPAddress()))
-window.show()
-
-app.exec_()
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.statusBar().showMessage("Your IP is: " + str(getIPAddress()))
+    MainWindow.show()
+    sys.exit(app.exec_())

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'server.ui'
+# Form implementation generated from reading ui file '.\server.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -14,23 +14,27 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(468, 510)
+        self.gridLayout = QtWidgets.QGridLayout(Dialog)
+        self.gridLayout.setObjectName("gridLayout")
         self.textEditMessages = QtWidgets.QTextEdit(Dialog)
-        self.textEditMessages.setGeometry(QtCore.QRect(10, 10, 341, 441))
+        self.textEditMessages.setMinimumSize(QtCore.QSize(300, 400))
         self.textEditMessages.setObjectName("textEditMessages")
-        self.lineEditMessage = QtWidgets.QLineEdit(Dialog)
-        self.lineEditMessage.setGeometry(QtCore.QRect(10, 460, 341, 32))
-        self.lineEditMessage.setObjectName("lineEditMessage")
-        self.pushButtonSend = QtWidgets.QPushButton(Dialog)
-        self.pushButtonSend.setGeometry(QtCore.QRect(360, 460, 88, 34))
-        self.pushButtonSend.setObjectName("pushButtonSend")
+        self.gridLayout.addWidget(self.textEditMessages, 0, 0, 1, 1)
         self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(380, 10, 58, 18))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
         self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
+        self.lineEditMessage = QtWidgets.QLineEdit(Dialog)
+        self.lineEditMessage.setObjectName("lineEditMessage")
+        self.gridLayout.addWidget(self.lineEditMessage, 1, 0, 1, 1)
+        self.pushButtonSend = QtWidgets.QPushButton(Dialog)
+        self.pushButtonSend.setObjectName("pushButtonSend")
+        self.gridLayout.addWidget(self.pushButtonSend, 1, 1, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -38,5 +42,5 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.pushButtonSend.setText(_translate("Dialog", "Send"))
         self.label.setText(_translate("Dialog", "Server"))
+        self.pushButtonSend.setText(_translate("Dialog", "Send"))
