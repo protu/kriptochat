@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>497</width>
+    <width>483</width>
     <height>655</height>
    </rect>
   </property>
@@ -15,29 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="QPlainTextEdit" name="plainTextEditMessage">
-      <property name="minimumSize">
-       <size>
-        <width>300</width>
-        <height>80</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>80</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>0</width>
-        <height>100</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
+    <item row="2" column="2">
      <widget class="QPushButton" name="pushButtonSend">
       <property name="minimumSize">
        <size>
@@ -62,7 +40,24 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="0" colspan="2">
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEditAddress"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="labelPeerHost">
+      <property name="text">
+       <string>Peer's host name or  ip address: </string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="pushButtonConnect">
+      <property name="text">
+       <string>Connect</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3">
      <widget class="QTextBrowser" name="textBrowserReceivedMessages">
       <property name="minimumSize">
        <size>
@@ -78,6 +73,28 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QPlainTextEdit" name="plainTextEditMessage">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -85,7 +102,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>497</width>
+     <width>483</width>
      <height>21</height>
     </rect>
    </property>
@@ -95,14 +112,7 @@
     </property>
     <addaction name="actionLogin"/>
    </widget>
-   <widget class="QMenu" name="menuPeer">
-    <property name="title">
-     <string>Peer</string>
-    </property>
-    <addaction name="actionConnect"/>
-   </widget>
    <addaction name="menuUser"/>
-   <addaction name="menuPeer"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionLogin">
