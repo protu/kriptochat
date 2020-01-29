@@ -1,10 +1,6 @@
 import socket
 import sys
 import threading
-from PyQt5.QtGui import QColor, QPalette
-from PyQt5.QtWidgets import (QApplication, QMainWindow,
-                             QPushButton, QStatusBar, QTextBrowser, QTextEdit,
-                             QToolBar, QVBoxLayout, QWidget)
 from chatwindow import *
 
 
@@ -40,8 +36,11 @@ class Server:
 
 class Client:
 
-    def connect(self, address, output):
+    def __init__(self, output):
         self.output = output
+        self.sock = None
+
+    def connect(self, address):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((address, 6001))
         self.output.append("Client connected to " + address)
@@ -60,6 +59,10 @@ class Client:
     def sendMsg(self, message):
         self.sock.sendall(bytes(message, 'utf-8'))
 
+    def disconnect(self):
+        self.sock.close()
+        self.output.append("Client disconnected")
+
 
 class Chat:
 
@@ -71,16 +74,22 @@ class Chat:
         self.ui.pushButtonConnect.clicked.connect(self.connect)
         self.ui.pushButtonSend.clicked.connect(self.sendMessage)
         self.server = Server(self.ui.textBrowserReceivedMessages)
-        self.client = Client()
+        self.client = Client(self.ui.textBrowserReceivedMessages)
         MainWindow.statusBar().showMessage("Your IP is: " + str(getIPAddress()))
         MainWindow.show()
         sys.exit(app.exec_())
 
     def connect(self):
-        address = self.ui.lineEditAddress.text()
-        if address == "":
-            address = "127.0.0.1"
-        c = self.client.connect(address, self.ui.textBrowserReceivedMessages)
+        if self.ui.pushButtonConnect.text() == "Connect":
+            address = self.ui.lineEditAddress.text()
+            if address == "":
+                address = "127.0.0.1"
+            self.client.connect(address)
+            self.ui.pushButtonConnect.setText("Disconnect")
+        else:
+            self.client.disconnect()
+            self.ui.pushButtonConnect.setText("Connect")
+
 
     def sendMessage(self):
         message = self.ui.plainTextEditMessage.toPlainText()
