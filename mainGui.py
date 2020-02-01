@@ -35,15 +35,14 @@ class Server:
         while True:
             self.conn, self.chost = self.sock.accept()
             if self.conn is not None:
-                self.chat.clientAddress(self.chost[0])
-                self.chat.connect()
+                # self.chat.clientAddress(self.chost[0])
+                # self.chat.connect()
                 self.output.append("Client connected from " + self.chost[0])
                 break
         while True:
             data = self.conn.recv(1024)
             if data == b'\x11Disconnect' or not data:
                 self.disconnect()
-                break
             elif data.find(b"\x11Hello") == 0:
                 self.helloClient(data)
             else:
@@ -69,6 +68,8 @@ class Server:
 
 class Client:
 
+    synKey = None
+
     def __init__(self, output):
         self.output = output
         self.sock = None
@@ -87,7 +88,7 @@ class Client:
     def helloServer(self):
         """Send authorization and public key to server"""
         hello_msg = b"\x11Hello" + b"user"
-        hello_msg += self.getPrivateKey()
+        hello_msg += self.getPublicKey()
         self.sock.sendall(hello_msg)
 
     def rcvMsg(self):
@@ -95,8 +96,15 @@ class Client:
             data = self.sock.recv(1024)
             if not data:
                 break
+            elif data.find(b'\x11Hello'):
+                self.getSynKey(data)
             else:
                 self.output.append("Other: " + str(data, 'utf-8'))
+
+    def getSynKey(data):
+        secKeyFile = open("secKey.pem", 'rb')
+        synKey = criptoLib.decrypt_key(data[6:], secKeyFile.read())
+        self.synKey = synKey
 
     def sendMsg(self, message):
         self.sock.sendall(bytes(message, 'utf-8'))
@@ -107,7 +115,7 @@ class Client:
         self.sock.close()
         self.output.append("Client disconnected")
 
-    def getPrivateKey(self):
+    def getPublicKey(self):
         try:
             pubKeyFile = open("pubkey.pem", "rb")
             pubKeybytes = pubKeyFile.read()

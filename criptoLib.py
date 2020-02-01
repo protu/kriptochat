@@ -34,7 +34,7 @@ def create_keys(directory=".", key_length=2048):
 
 def encrypt_key(key, directory=".", pk=None):
     """Encrypt secret key with public key"""
-    if (pk == None):
+    if pk is None:
         pub_key_file = open(directory + "/pubkey.pem", "rb")
         public_key = RSA.importKey(pub_key_file.read())
     else:
@@ -44,10 +44,13 @@ def encrypt_key(key, directory=".", pk=None):
     return pub_key.encrypt(key)
 
 
-def decrypt_key(enc_key, directory="."):
+def decrypt_key(enc_key, directory=".", sk=None):
     """Decrypt secret key with private key"""
-    sec_key_file = open(directory + "/seckey.pem", "rb")
-    secret_key = RSA.importKey(sec_key_file.read())
+    if sk is None:
+        sec_key_file = open(directory + "/seckey.pem", "rb")
+        secret_key = RSA.importKey(sec_key_file.read())
+    else:
+        secret_key = RSA.importKey(sk)
     sec_key = PKCS1_OAEP.new(secret_key)
     sym_key = sec_key.decrypt(enc_key).strip()
     return sym_key
