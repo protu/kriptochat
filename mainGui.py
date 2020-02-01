@@ -2,6 +2,7 @@ import socket
 import sys
 import threading
 from chatwindow import *
+import criptoLib
 
 
 def getIPAddress():
@@ -13,6 +14,7 @@ def getIPAddress():
 class Server:
     conn = None
     chost = None
+    symKey = None
 
     def __init__(self, output, chat):
         self.chat = chat
@@ -42,8 +44,19 @@ class Server:
             if data == b'\x11Disconnect' or not data:
                 self.disconnect()
                 break
+            elif data.find(b"\x11Hello") == 0:
+                self.helloClient(data)
             else:
                 self.output.append("Other: " + str(data, 'utf-8'))
+
+    def helloClient(self, clientHello):
+        keyStart = clientHello.find(b"-----B")
+        user = clientHello[6:keyStart]
+        pubKey = clientHello[keyStart:]
+        self.symKey = criptoLib.create_sym_key()
+        iv = criptoLib.get_iv()
+        encSymKey = criptoLib.encrypt_key(self.symKey, pk=pubKey)
+        self.conn.sendall(b"\x11Hello" + encSymKey)
 
     def sendMsg(self, message):
         self.conn.sendall(bytes(message, 'utf-8'))
@@ -60,7 +73,7 @@ class Client:
         self.output = output
         self.sock = None
 
-    def connect(self, address):
+    def connectServer(self, address):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.output.append("Client connected to " + address)
@@ -68,6 +81,14 @@ class Client:
         rThread = threading.Thread(target=self.rcvMsg)
         rThread.daemon = True
         rThread.start()
+        print("I'm connecting")
+        self.helloServer()
+
+    def helloServer(self):
+        """Send authorization and public key to server"""
+        hello_msg = b"\x11Hello" + b"user"
+        hello_msg += self.getPrivateKey()
+        self.sock.sendall(hello_msg)
 
     def rcvMsg(self):
         while True:
@@ -85,6 +106,14 @@ class Client:
         self.sock.shutdown(socket.SHUT_RDWR)
         self.sock.close()
         self.output.append("Client disconnected")
+
+    def getPrivateKey(self):
+        try:
+            pubKeyFile = open("pubkey.pem", "rb")
+            pubKeybytes = pubKeyFile.read()
+            return pubKeybytes
+        except Exception as e:
+            print(e)
 
 
 class Chat:
@@ -120,7 +149,7 @@ class Chat:
         if address == "":
             address = "127.0.0.1"
         if self.clientMode:
-            self.client.connect(address)
+            self.client.connectServer(address)
         self.ui.pushButtonConnect.setText("Disconnect")
         self.ui.pushButtonSend.setEnabled(True)
 

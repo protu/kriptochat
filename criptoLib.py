@@ -32,10 +32,13 @@ def create_keys(directory=".", key_length=2048):
     return True
 
 
-def encrypt_key(key, directory="."):
+def encrypt_key(key, directory=".", pk=None):
     """Encrypt secret key with public key"""
-    pub_key_file = open(directory + "/pubkey.pem", "rb")
-    public_key = RSA.importKey(pub_key_file.read())
+    if (pk == None):
+        pub_key_file = open(directory + "/pubkey.pem", "rb")
+        public_key = RSA.importKey(pub_key_file.read())
+    else:
+        public_key = RSA.importKey(pk)
     pub_key = PKCS1_OAEP.new(public_key)
     key += bytes(" " * (chunk_size - len(key)), "utf-8")
     return pub_key.encrypt(key)
