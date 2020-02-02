@@ -46,7 +46,8 @@ class Server:
             elif data.find(b"\x11Hello") == 0:
                 self.helloClient(data)
             else:
-                self.output.append("Other: " + str(data, 'utf-8'))
+                message = criptoLib.dec_msg(data, self.symKey)
+                self.output.append("Other: " + message)
 
     def helloClient(self, clientHello):
         keyStart = clientHello.find(b"-----B")
@@ -58,7 +59,8 @@ class Server:
         self.conn.sendall(b"\x11Hello" + encSymKey)
 
     def sendMsg(self, message):
-        self.conn.sendall(bytes(message, 'utf-8'))
+        encMsg = criptoLib.enc_msg(message, self.symKey, criptoLib.get_iv())
+        self.conn.sendall(encMsg)
 
     def disconnect(self):
         self.output.append("Disconnecting on client request")
@@ -68,7 +70,7 @@ class Server:
 
 class Client:
 
-    synKey = None
+    symKey = None
 
     def __init__(self, output):
         self.output = output
@@ -82,7 +84,6 @@ class Client:
         rThread = threading.Thread(target=self.rcvMsg)
         rThread.daemon = True
         rThread.start()
-        print("I'm connecting")
         self.helloServer()
 
     def helloServer(self):
@@ -96,18 +97,20 @@ class Client:
             data = self.sock.recv(1024)
             if not data:
                 break
-            elif data.find(b'\x11Hello'):
+            elif data.find(b'\x11Hello') == 0:
                 self.getSynKey(data)
             else:
-                self.output.append("Other: " + str(data, 'utf-8'))
+                message = criptoLib.dec_msg(data, self.symKey)
+                self.output.append("Other: " + message)
 
-    def getSynKey(data):
-        secKeyFile = open("secKey.pem", 'rb')
-        synKey = criptoLib.decrypt_key(data[6:], secKeyFile.read())
-        self.synKey = synKey
+    def getSynKey(self, data):
+        secKeyFile = open("seckey.pem", 'rb')
+        synKey = criptoLib.decrypt_key(data[6:], sk=secKeyFile.read())
+        self.symKey = synKey
 
     def sendMsg(self, message):
-        self.sock.sendall(bytes(message, 'utf-8'))
+        encMsg = criptoLib.enc_msg(message, self.symKey, criptoLib.get_iv())
+        self.sock.sendall(encMsg)
 
     def disconnect(self):
         self.sock.sendall(b'\x11Disconnect')
