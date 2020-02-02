@@ -1,8 +1,10 @@
 import socket
 import sys
 import threading
-from chatwindow import *
+import time
 import criptoLib
+from chatwindow import *
+from logindialog import *
 
 
 def getIPAddress():
@@ -35,19 +37,24 @@ class Server:
         while True:
             self.conn, self.chost = self.sock.accept()
             if self.conn is not None:
-                # self.chat.clientAddress(self.chost[0])
-                # self.chat.connect()
                 self.output.append("Client connected from " + self.chost[0])
+                self.chat.ui.pushButtonSend.setEnabled(True)
                 break
         while True:
-            data = self.conn.recv(1024)
-            if data == b'\x11Disconnect' or not data:
-                self.disconnect()
-            elif data.find(b"\x11Hello") == 0:
-                self.helloClient(data)
-            else:
-                message = criptoLib.dec_msg(data, self.symKey)
-                self.output.append("Other: " + message)
+            if self.conn is None:
+                break
+            try:
+                data = self.conn.recv(1024)
+                if data == b'\x11Disconnect' or not data:
+                    self.disconnect()
+                elif data.find(b"\x11Hello") == 0:
+                    self.helloClient(data)
+                else:
+                    message = criptoLib.dec_msg(data, self.symKey)
+                    self.output.append("Other: " + message)
+            except Exception as e:
+                print(e.with_traceback())
+                pass
 
     def helloClient(self, clientHello):
         keyStart = clientHello.find(b"-----B")
@@ -65,7 +72,9 @@ class Server:
     def disconnect(self):
         self.output.append("Disconnecting on client request")
         self.conn.close()
-        self.startServer()
+        self.sock.shutdown(socket.SHUT_RDWR)
+        self.sock.close()
+        # self.chat.restartServer()
 
 
 class Client:
@@ -114,8 +123,8 @@ class Client:
 
     def disconnect(self):
         self.sock.sendall(b'\x11Disconnect')
-        self.sock.shutdown(socket.SHUT_RDWR)
-        self.sock.close()
+        # self.sock.shutdown(socket.SHUT_RDWR)
+        # self.sock.close()
         self.output.append("Client disconnected")
 
     def getPublicKey(self):
@@ -138,11 +147,21 @@ class Chat:
         self.ui.pushButtonConnect.clicked.connect(self.connectToggle)
         self.ui.pushButtonSend.clicked.connect(self.sendMessage)
         self.ui.pushButtonSend.setEnabled(False)
+        self.ui.actionLogin.triggered.connect(self.login)
         self.server = Server(self.ui.textBrowserReceivedMessages, self)
         self.client = Client(self.ui.textBrowserReceivedMessages)
         MainWindow.statusBar().showMessage("Your IP is: " + str(getIPAddress()))
         MainWindow.show()
         sys.exit(app.exec_())
+
+    def login(self):
+        dialog = QtWidgets.QDialog()
+        dui = Ui_Dialog()
+        dui.setupUi(dialog)
+        dialog.exec()
+
+    def restartServer(self):
+        self.server = Server(self.ui.textBrowserReceivedMessages, self)
 
     def clientAddress(self, address):
         self.ui.lineEditAddress.setText(address)
