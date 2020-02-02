@@ -39,6 +39,8 @@ class Server:
             if self.conn is not None:
                 self.output.append("Client connected from " + self.chost[0])
                 self.chat.ui.pushButtonSend.setEnabled(True)
+                self.chat.ui.pushButtonConnect.setText("Disconnect")
+                self.chat.ui.lineEditAddress.setText(self.chost[0])
                 break
         while True:
             if self.conn is None:
@@ -53,7 +55,7 @@ class Server:
                     message = criptoLib.dec_msg(data, self.symKey)
                     self.output.append("Other: " + message)
             except Exception as e:
-                print(e.with_traceback())
+                print(e)
                 pass
 
     def helloClient(self, clientHello):
@@ -70,11 +72,11 @@ class Server:
         self.conn.sendall(encMsg)
 
     def disconnect(self):
-        self.output.append("Disconnecting on client request")
+        self.output.append("Server disconnected")
         self.conn.close()
         self.sock.shutdown(socket.SHUT_RDWR)
         self.sock.close()
-        # self.chat.restartServer()
+        self.chat.restartServer()
 
 
 class Client:

@@ -136,6 +136,7 @@
      <string>User</string>
     </property>
     <addaction name="actionLogin"/>
+    <addaction name="actionCreate_keys"/>
    </widget>
    <addaction name="menuUser"/>
   </widget>
@@ -143,6 +144,14 @@
   <action name="actionLogin">
    <property name="text">
     <string>Login</string>
+   </property>
+  </action>
+  <action name="actionCreate_keys">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Create keys</string>
    </property>
   </action>
  </widget>

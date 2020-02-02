@@ -67,7 +67,11 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.actionLogin = QtWidgets.QAction(MainWindow)
         self.actionLogin.setObjectName("actionLogin")
+        self.actionCreate_keys = QtWidgets.QAction(MainWindow)
+        self.actionCreate_keys.setEnabled(False)
+        self.actionCreate_keys.setObjectName("actionCreate_keys")
         self.menuUser.addAction(self.actionLogin)
+        self.menuUser.addAction(self.actionCreate_keys)
         self.menubar.addAction(self.menuUser.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -83,3 +87,4 @@ class Ui_MainWindow(object):
         self.pushButtonSend.setShortcut(_translate("MainWindow", "Ctrl+Return"))
         self.menuUser.setTitle(_translate("MainWindow", "User"))
         self.actionLogin.setText(_translate("MainWindow", "Login"))
+        self.actionCreate_keys.setText(_translate("MainWindow", "Create keys"))
