@@ -63,7 +63,7 @@ def hash_pass(password):
 
 def check_pass(password, hashed_pass):
     """Check if password is right"""
-    return bcrypt.checkpw(bytes(password, "utf-8"), hashed_pass)
+    return bcrypt.checkpw(bytes(password, "utf-8"), bytes(hashed_pass, "utf-8"))
 
 
 def create_sym_key():

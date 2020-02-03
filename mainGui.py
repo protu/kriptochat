@@ -3,6 +3,7 @@ import sys
 import threading
 import time
 import criptoLib
+import traceback
 from chatwindow import *
 from logindialog import *
 
@@ -25,6 +26,8 @@ class Server:
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind(('0.0.0.0', 6001))
         self.sock.listen(1)
+        self.ruser = ""
+        self.luser = ""
         self.startServer()
 
     def startServer(self):
@@ -53,14 +56,15 @@ class Server:
                     self.helloClient(data)
                 else:
                     message = criptoLib.dec_msg(data, self.symKey)
-                    self.output.append("Other: " + message)
+                    self.output.append(
+                        str(self.ruser, 'utf-8') + ": " + message)
             except Exception as e:
-                print(e)
+                traceback.print_exc()
                 pass
 
     def helloClient(self, clientHello):
         keyStart = clientHello.find(b"-----B")
-        user = clientHello[6:keyStart]
+        self.ruser = clientHello[6:keyStart]
         pubKey = clientHello[keyStart:]
         self.symKey = criptoLib.create_sym_key()
         iv = criptoLib.get_iv()
@@ -76,7 +80,6 @@ class Server:
         self.conn.close()
         self.sock.shutdown(socket.SHUT_RDWR)
         self.sock.close()
-        self.chat.restartServer()
 
 
 class Client:
@@ -86,6 +89,7 @@ class Client:
     def __init__(self, output):
         self.output = output
         self.sock = None
+        self.user = ""
 
     def connectServer(self, address):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -99,7 +103,7 @@ class Client:
 
     def helloServer(self):
         """Send authorization and public key to server"""
-        hello_msg = b"\x11Hello" + b"user"
+        hello_msg = b"\x11Hello" + bytes(self.user, 'utf-8')
         hello_msg += self.getPublicKey()
         self.sock.sendall(hello_msg)
 
@@ -112,7 +116,7 @@ class Client:
                 self.getSynKey(data)
             else:
                 message = criptoLib.dec_msg(data, self.symKey)
-                self.output.append("Other: " + message)
+                self.output.append("Server: " + message)
 
     def getSynKey(self, data):
         secKeyFile = open("seckey.pem", 'rb')
@@ -140,6 +144,8 @@ class Client:
 
 class Chat:
     clientMode = False
+    user = ""
+    password = ""
 
     def __init__(self):
         app = QtWidgets.QApplication(sys.argv)
@@ -149,18 +155,39 @@ class Chat:
         self.ui.pushButtonConnect.clicked.connect(self.connectToggle)
         self.ui.pushButtonSend.clicked.connect(self.sendMessage)
         self.ui.pushButtonSend.setEnabled(False)
+        self.ui.pushButtonConnect.setEnabled(False)
         self.ui.actionLogin.triggered.connect(self.login)
-        self.server = Server(self.ui.textBrowserReceivedMessages, self)
+        self.ui.actionCreate_keys.triggered.connect(self.createKeys)
+        self.server = None
         self.client = Client(self.ui.textBrowserReceivedMessages)
+        self.dui = Ui_Dialog()
         MainWindow.statusBar().showMessage("Your IP is: " + str(getIPAddress()))
         MainWindow.show()
         sys.exit(app.exec_())
 
+    def createKeys(self):
+        criptoLib.create_keys()
+
     def login(self):
         dialog = QtWidgets.QDialog()
-        dui = Ui_Dialog()
-        dui.setupUi(dialog)
-        dialog.exec()
+        self.dui.setupUi(dialog)
+        if dialog.exec_() == QtWidgets.QDialog.Accepted:
+            self.user = self.dui.lineEditUsername.text()
+            self.password = self.dui.lineEditPassword.text()
+            if self.checkLogin():
+                self.ui.pushButtonConnect.setEnabled(True)
+                self.ui.actionCreate_keys.setEnabled(True)
+                self.server = Server(self.ui.textBrowserReceivedMessages, self)
+                self.server.luser = self.user
+            print("user:", self.user)
+
+    def checkLogin(self):
+        passFile = open("passwords", "r")
+        for line in passFile.readlines():
+            fuser, fpass = line.split()
+            if fuser == self.user and criptoLib.check_pass(self.password, fpass):
+                return True
+        return False
 
     def restartServer(self):
         self.server = Server(self.ui.textBrowserReceivedMessages, self)
@@ -181,6 +208,7 @@ class Chat:
         if address == "":
             address = "127.0.0.1"
         if self.clientMode:
+            self.client.user = self.user
             self.client.connectServer(address)
         self.ui.pushButtonConnect.setText("Disconnect")
         self.ui.pushButtonSend.setEnabled(True)
@@ -198,7 +226,7 @@ class Chat:
 
     def sendMessage(self):
         message = self.ui.plainTextEditMessage.toPlainText()
-        self.ui.textBrowserReceivedMessages.append("Me: " + message)
+        self.ui.textBrowserReceivedMessages.append(self.user + ": " + message)
         self.ui.plainTextEditMessage.clear()
         if self.clientMode and message:
             self.client.sendMsg(message)
